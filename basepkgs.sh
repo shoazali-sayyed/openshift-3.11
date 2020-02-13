@@ -10,8 +10,8 @@ sudo yum -y install wget git net-tools bind-utils iptables-services bridge-utils
 sudo mkdir -p /root/.ssh
 # create passwordless ssh key for root. Update path if you're running a
 # non-root user.
-sudo ssh-keygen -t rsa -f /root/.ssh/id_rsa -N ''
-
+sudo ssh-keygen -t rsa \
+-f /root/.ssh/id_rsa -N ''
 sudo yum -y update
 # Install the Extra Packages for Enterprise Linux (EPEL) repository
 sudo yum -y install epel-release
