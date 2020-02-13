@@ -7,11 +7,11 @@ sudo yum -y update
 sudo yum -y install wget git net-tools bind-utils iptables-services bridge-utils bash-completion kexec-tools sos psacct httpd-tools dnsmasq
 # create .ssh folder in /root. Update the path if you plan to use a non-root
 # user with Ansible.
-mkdir -p /root/.ssh
+sudo mkdir -p /root/.ssh
 # create passwordless ssh key for root. Update path if you're running a
 # non-root user.
-ssh-keygen -t rsa \
-    -f /root/.ssh/id_rsa -N ''
+sudo ssh-keygen -t rsa -f /root/.ssh/id_rsa -N ''
+
 sudo yum -y update
 # Install the Extra Packages for Enterprise Linux (EPEL) repository
 sudo yum -y install epel-release
@@ -22,6 +22,6 @@ sudo yum -y --enablerepo=epel install pyOpenSSL python-passlib
 # install ansible-2.4.3.0 from CentOS archives
 sudo yum -y install https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64/ansible-2.6.2-1.el7.ans.noarch.rpm
 # Install Java
-yum -y install java-1.8.0-openjdk-headless
+sudo yum -y install java-1.8.0-openjdk-headless
 # Reboot system to apply any kernel updates
 sudo reboot
