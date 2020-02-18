@@ -1,0 +1,32 @@
+[OSEv3:children]
+masters
+nodes
+
+[OSEv3:vars]
+ansible_ssh_user=demouser
+ansible_become=yes
+debug_level=2
+openshift_deployment_type=origin
+
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
+
+openshift_master_cluster_method=native
+openshift_master_cluster_hostname=okd.master.linkazs.com
+openshift_master_cluster_public_hostname=okd.master.linkazs.com
+
+openshift_master_default_subdomain=apps.okd.infra.linkazs.com
+openshift_use_dnsmasq=True
+
+openshift_disable_check=disk_availability,memory_availability
+
+
+[masters]
+master.linkazs.com
+
+[etcd]
+master.linkazs.com
+
+[nodes]
+master.linkazs.com openshift_node_group_name='node-config-master'
+node.linkazs.com openshift_node_group_name='node-config-compute'
+infra.linkazs.com openshift_node_group_name='node-config-infra'
