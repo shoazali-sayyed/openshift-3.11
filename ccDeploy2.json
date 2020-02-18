@@ -77,51 +77,8 @@
 			"privateIp": "10.10.1.13"
 		}
 	},
-	"resources": [{
-			"apiVersion": "2016-03-30",
-			"type": "Microsoft.Network/virtualNetworks",
-			"name": "[variables('vNet1').name]",
-			"location": "[resourceGroup().location]",
-			"dependsOn": [
-				"[concat('Microsoft.Network/networkSecurityGroups/', variables('networkSecurityGroupName'))]"
-			],
-			"tags": {
-				"displayName": "KeyVault"
-			},
-			"properties": {
-				"tenantId": "[subscription().tenantId]",
-				"accessPolicies": [{
-					"objectId": "[reference(concat(resourceId('Microsoft.Compute/virtualMachines', variables('bastionVM').name), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2018-11-30').principalId]",
-					"tenantId": "[subscription().tenantId]",
-					"permissions": {
-						"secrets": [
-							"all"
-						]
-					}
-				}],
-				"sku": {
-					"name": "[variables('keyVault').skuName]",
-					"family": "A"
-				},
-				"networkAcls": {
-					"value": {
-						"defaultAction": "Allow",
-						"bypass": "AzureServices"
-					}
-				}
-			}
-		},
-		{
-			"type": "Microsoft.KeyVault/vaults/secrets",
-			"name": "[concat(variables('keyVault').name, '/', variables('keyVault').secretName)]",
-			"apiVersion": "2018-02-14",
-			"dependsOn": [
-				"[concat('Microsoft.KeyVault/vaults/', variables('keyVault').name)]"
-			],
-			"properties": {
-				"value": "[variables('keyVault').secretValue]"
-			}
-		},
+	"resources": [
+		
 		{
 			"apiVersion": "2016-03-30",
 			"type": "Microsoft.Network/virtualNetworks",
